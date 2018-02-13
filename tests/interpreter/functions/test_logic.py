@@ -1,6 +1,6 @@
 import pytest
 
-from interpreter.functions.math import *
+from interpreter.functions.logical import *
 
 
 class TestAnd:
