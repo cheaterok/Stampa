@@ -1,5 +1,7 @@
 import pytest
 
+from interpreter.functions.math import *
+
 
 class TestAnd:
     """
