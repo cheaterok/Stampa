@@ -14,10 +14,6 @@ class TestIf:
     def test_if2(self):
         assert if_(0, 100, 200) == 200
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            if_(10, "two")
-
 
 class TestNcase0:
     """
@@ -32,10 +28,6 @@ class TestNcase0:
 
     def test_ncase3(self):
         assert ncase0(9, 100, 4, 5, 6, 7) == 100
-
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            ncase0(10, "two", 4, 5, 6, 7)
 
 
 class TestNcase1:
@@ -55,10 +47,6 @@ class TestNcase1:
     def test_ncase4(self):
         assert ncase1(9, 100, 4, 5, 6, 7) == 100
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            ncase1(10, "two", 4, 5, 6, 7)
-
 
 class TestRcase:
     """
@@ -77,10 +65,6 @@ class TestRcase:
     def test_rcase4(self):
         assert rcase(500, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Hot"
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            rcase("500", "Very cold", "-10", "Cold", "5", "Norm", "40", "Hot")
-
 
 class TestLcase:
     """
@@ -94,17 +78,10 @@ class TestLcase:
         assert lcase(-10, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Very cold"
 
     def test_lcase3(self):
-        assert lcase(-11, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Cold"
-
-    def test_lcase4(self):
         assert lcase(7, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Norm"
 
-    def test_lcase5(self):
+    def test_lcase4(self):
         assert lcase(500, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Hot"
-
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            lcase("500", 500, "-10", 5, "5", 40, "40", 500)
 
 
 class TestTcase:
