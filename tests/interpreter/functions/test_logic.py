@@ -10,17 +10,17 @@ class TestAnd:
     """
 
     def test_equ_val(self):
-        assert _and(10, 10) == 10 and 10
+        assert and_(10, 10) == 10 and 10
 
     def test_neq_val(self):
-        assert _and(10, 1) == 10 and 1
+        assert and_(10, 1) == 10 and 1
 
     def test_letters(self):
-        assert _and("ab", "ab") == "ab" and "ab"
+        assert and_("ab", "ab") == "ab" and "ab"
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
-            _and(10, "a")
+            and_(10, "a")
 
 
 class TestOr:
@@ -30,17 +30,17 @@ class TestOr:
     """
 
     def test_equ_val(self):
-        assert _or(17, 17) == 17 or 17
+        assert or_(17, 17) == 17 or 17
 
     def test_neq_val(self):
-        assert _or(15, 1) == 15 or 1
+        assert or_(15, 1) == 15 or 1
 
     def test_letters(self):
-        assert _or("ab", "ab") == "ab" or "ab"
+        assert or_("ab", "ab") == "ab" or "ab"
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
-            _or(7, "d")
+            or_(7, "d")
 
 
 class TestNot:
@@ -50,14 +50,14 @@ class TestNot:
     """
 
     def test_not_one(self):
-        assert _not(1) == 0
+        assert not_(1) == 0
 
     def test_not_zero(self):
-        assert _not(0) == 1
+        assert not_(0) == 1
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
-            _not("two")
+            not_("two")
 
 
 class TestSeq:
