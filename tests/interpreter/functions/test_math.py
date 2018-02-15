@@ -114,17 +114,17 @@ class TestMod:
 class TestAbs:
 
     def test_zero(self):
-        assert _abs(0) == abs(0)
+        assert abs_(0) == abs(0)
 
     def test_positive(self):
-        assert _abs(400) == abs(400)
+        assert abs_(400) == abs(400)
 
     def test_negative(self):
-        assert _abs(-3.33) == abs(-3.33)
+        assert abs_(-3.33) == abs(-3.33)
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
-            _abs("Your self esteem")
+            abs_("Your self esteem")
 
 
 class TestNeg:
