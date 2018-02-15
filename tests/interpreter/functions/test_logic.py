@@ -10,17 +10,16 @@ class TestAnd:
     """
 
     def test_equ_val(self):
-        assert and_(10, 10) == 10 and 10
+        assert and_(10, 10) == 1
 
     def test_neq_val(self):
-        assert and_(10, 1) == 10 and 1
+        assert and_(10, 0) == 0
 
     def test_letters(self):
-        assert and_("ab", "ab") == "ab" and "ab"
+        assert and_("ab", "ab") == 1
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            and_(10, "a")
+    def test_empty_string(self):
+        assert and_("test", "") == 0
 
 
 class TestOr:
@@ -30,17 +29,16 @@ class TestOr:
     """
 
     def test_equ_val(self):
-        assert or_(17, 17) == 17 or 17
+        assert or_(17, 1) == 1
 
     def test_neq_val(self):
-        assert or_(15, 1) == 15 or 1
+        assert or_(0, 0) == 0
 
     def test_letters(self):
-        assert or_("ab", "ab") == "ab" or "ab"
+        assert or_("ab", "ab") == 1
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            or_(7, "d")
+    def test_empty_strings(self):
+        assert or_("", 0) == 0
 
 
 class TestNot:
@@ -50,14 +48,13 @@ class TestNot:
     """
 
     def test_not_one(self):
-        assert not_(1) == 0
+        assert not_(10) == 0
 
     def test_not_zero(self):
         assert not_(0) == 1
 
-    def test_typeerror(self):
-        with pytest.raises(TypeError):
-            not_("two")
+    def test_not_empty_string(self):
+        assert not_("") == 1
 
 
 class TestSeq:
@@ -107,13 +104,13 @@ class TestSgt:
     """
 
     def test_sgt1(self):
-        assert sgt("abc", "acb") == 1
+        assert sgt("abc", "acb") == 0
 
     def test_sgt2(self):
-        assert sgt("Привет мир", "Hello world") == "Привет мир" > 1
+        assert sgt("Привет мир", "Hello world") == int("Привет мир" > "Hello world")
 
     def test_sgt3(self):
-        assert sgt("1000", "0000") == 0
+        assert sgt("1000", "0000") == 1
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
@@ -252,7 +249,7 @@ class TestNge:
     """
 
     def test_int_float(self):
-        assert nge(1, 1.000000001) == 1
+        assert nge(1, 1.000000001) == 0
 
     def test_eq(self):
         assert nge(2, 2) == 1
@@ -272,7 +269,7 @@ class TestNlt:
     """
 
     def test_int_float(self):
-        assert nlt(1, 1.000000001) == 0
+        assert nlt(1, 1.000000001) == 1
 
     def test_eq(self):
         assert nlt(2, 3) == 1
@@ -295,7 +292,7 @@ class TestNle:
         assert nle(2, 2) == 1
 
     def test_larger(self):
-        assert nle(3, 5) == 0
+        assert nle(5, 3) == 0
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
