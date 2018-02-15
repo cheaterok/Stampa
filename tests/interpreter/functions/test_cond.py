@@ -9,14 +9,14 @@ class TestIf:
     """
 
     def test_if1(self):
-        assert _if(1, 100, 200) == 100
+        assert if_(1, 100, 200) == 100
 
     def test_if2(self):
-        assert _if(0, 100, 200) == 200
+        assert if_(0, 100, 200) == 200
 
     def test_typeerror(self):
         with pytest.raises(TypeError):
-            _if(10, "two")
+            if_(10, "two")
 
 
 class TestNcase0:
@@ -96,10 +96,10 @@ class TestLcase:
     def test_lcase3(self):
         assert lcase(-11, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Cold"
 
-    def test_lcase3(self):
+    def test_lcase4(self):
         assert lcase(7, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Norm"
 
-    def test_lcase4(self):
+    def test_lcase5(self):
         assert lcase(500, "Very cold", -10, "Cold", 5, "Norm", 40, "Hot") == "Hot"
 
     def test_typeerror(self):
@@ -117,5 +117,5 @@ class TestTcase:
     def test_tcase1(self):
         assert tcase(2, 1, 100, 2, 200, 3, 300) == 200
 
-    def test_tcase1(self):
+    def test_tcase2(self):
         assert tcase(7, 1, 100, 2, 200, 3, 300) == ''
