@@ -1,25 +1,28 @@
-import sys
+trim = str.strip
+trimt = str.rstrip
+triml = str.lstrip
+uc = str.upper
+lc = str.lower
 
-from interpreter.functions.__init__ import args_typecheck
 
-trim = args_typecheck(lambda text: text.strip())(str)
-trimt = args_typecheck(lambda text: text.rstrip())(str)
-triml = args_typecheck(lambda text: text.lstrip())(str)
-nws = None # Дописать
-uc = args_typecheck(lambda text: text.upper())(str)
-lc = args_typecheck(lambda text: text.lower())(str)
+def nws(s):
+    return ' '.join(str.split(s))
 
-def part():
-    # text[n : n + size]
-    # Дописать проверку ошибок
-    pass
+
+def part(text, size, n):
+    start, end = n*size, (n+1)*size
+    if len(text) < end:
+        raise IndexError
+    return text[start:end]
+
 
 def f(format, *args):
-    # Исправить функцию
-    sys.stdout.write(format % args)
+    return format % args
+
 
 def sed(text, expr):
     pass
+
 
 def tr(text, set1, set2):
     pass

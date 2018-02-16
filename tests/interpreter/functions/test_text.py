@@ -59,7 +59,7 @@ class TestPart:
 class TestNws:
 
     def test_nws(self):
-        assert nws("       so  much    spaces       ") == " so much spaces "
+        assert nws("       so  much    spaces       ") == "so much spaces"
 
     def test_empty(self):
         assert nws("                ") == ""
