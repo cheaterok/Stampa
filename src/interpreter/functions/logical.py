@@ -1,17 +1,21 @@
 import operator
+from functools import reduce
 from numbers import Number
 
 
-def args_typecheck(func):
+def args_typecheck(type):
     """
     Декоратор для проверки типов аргументов функции.
     """
-    def wrapper(type):
+    
+    def wrapper(func):
         def inner(*args):
             if not all(map(lambda x: isinstance(x, type), args)):
                 raise TypeError
             return func(*args)
+
         return inner
+
     return wrapper
 
 
@@ -19,8 +23,10 @@ def bool_to_int(func):
     """
     Декоратор для конвертирования булевого результата функции в числовой (1 или 0).
     """
+
     def wrapper(*args):
         return int(func(*args))
+
     return wrapper
 
 
@@ -39,16 +45,77 @@ def not_(a):
     return not a
 
 
-# Оказывается, что функции из модуля operator называются так же
-# и делают то же, что и функции из библиотеки интерпретатора
-# Можем использовать это для автоматической кодогенерации
-# Названия нужных функций из operator приведены в списке ниже,
-# названия функций из библиотеки формируются как [s/n](тип строка или число) + название соотв. функции из operator
-operator_names = ["eq", "ne", "gt", "ge", "lt", "le"]
+@bool_to_int
+@args_typecheck(str)
+def seq(*args):
+    return reduce(operator.eq, args)
 
-for name in operator_names:
-    globals()["s" + name] = bool_to_int(args_typecheck(getattr(operator, name))(str))
-    globals()["n" + name] = bool_to_int(args_typecheck(getattr(operator, name))(Number))
+
+@args_typecheck(str)
+@bool_to_int
+def sne(*args):
+    return reduce(operator.ne, args)
+
+
+@args_typecheck(str)
+@bool_to_int
+def sgt(*args):
+    return reduce(operator.gt, args)
+
+
+@args_typecheck(str)
+@bool_to_int
+def sge(*args):
+    return reduce(operator.ge, args)
+
+
+@args_typecheck(str)
+@bool_to_int
+def slt(*args):
+    return reduce(operator.lt, args)
+
+
+@args_typecheck(str)
+@bool_to_int
+def sle(*args):
+    return reduce(operator.le, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def neq(*args):
+    return reduce(operator.eq, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def nne(*args):
+    return reduce(operator.ne, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def ngt(*args):
+    return reduce(operator.gt, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def nge(*args):
+    return reduce(operator.ge, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def nlt(*args):
+    return reduce(operator.lt, args)
+
+
+@args_typecheck(Number)
+@bool_to_int
+def nle(*args):
+    return reduce(operator.le, args)
+
 
 even = lambda x: x % 2 == 0
 
