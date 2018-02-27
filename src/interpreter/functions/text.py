@@ -25,4 +25,10 @@ def sed(text, expr):
 
 
 def tr(text, set1, set2):
-    pass
+    for index, old in enumerate(set1):
+        try:
+            new = set2[index]
+        except IndexError:
+            new = ''
+        text = text.replace(old, new)
+    return text
