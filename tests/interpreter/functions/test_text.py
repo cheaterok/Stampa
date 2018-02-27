@@ -74,7 +74,16 @@ class TestSed:
 
 
 class TestTr:
-    pass
+
+    def test_tr(self):
+        assert tr("Hello", "elo", "EL") == "HELL"
+
+    def test_tr_strange_args(self):
+        assert tr("Hello", "3", "4") == "Hello"
+
+    def test_typeerror(self):
+        with pytest.raises(TypeError):
+            tr("Hello", 3, 4)
 
 
 class TestUc:
