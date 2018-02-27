@@ -29,3 +29,6 @@ def test_5():
 
 def test_6():
     assert interpreter.evaluate('trim([ Privet]):+add(2, 2)') == 'Privet'
+
+def test_7():
+    assert interpreter.evaluate('bomb()') == interpreter.BOMB
